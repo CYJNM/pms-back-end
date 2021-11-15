@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+mysqlclient = "*"
+djangorestframework = "*"
+djangorestframework-datatables-editor = "*"
+django-simpleui = {version = "*", index = "http://pypi.douban.com/simple/"}
+django-cors-headers = "*"
+djangorestframework-jwt = "*"
+django-filter = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
