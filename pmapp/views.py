@@ -79,7 +79,6 @@ class ServerView(BulkModelViewSet):
         return JsonResponse(code=status.HTTP_200_OK, msg='请求成功')
 
 
-
 # 项目立项
 def pro_start(request):
     response = render(request, 'pmapp/prostart.html', context=None)
