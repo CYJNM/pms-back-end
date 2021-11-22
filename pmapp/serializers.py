@@ -1,23 +1,29 @@
-from rest_framework import serializers
-from .models import *
-from django.contrib.auth.models import *
+from rest_framework.serializers import ModelSerializer
+from .models import Server, Project
+from django.contrib.auth.models import User
+from rest_framework_bulk import (
+    BulkListSerializer,
+    BulkSerializerMixin,
+    ListBulkCreateUpdateDestroyAPIView,
+)
 
 
-class ServerSerializer(serializers.ModelSerializer):
+class ServerSerializer(BulkSerializerMixin, ModelSerializer):
 
     class Meta:
         model = Server
         fields = '__all__'
+        list_serializer_class = BulkListSerializer
 
 
-class UserSerializer(serializers.ModelSerializer):
+class UserSerializer(ModelSerializer):
 
     class Meta:
         model = User
         fields = ('username', 'id')
 
 
-class ProjectSerializer(serializers.ModelSerializer):
+class ProjectSerializer(ModelSerializer):
 
     class Meta:
         model = Project

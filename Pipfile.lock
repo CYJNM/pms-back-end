@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "ed87bcc1003cf4f8f8157044a6a7d2cdbed7951d249abe9b226924ea6c767679"
+            "sha256": "6d31dd32d65bea7cd93a896a3c3af28a60389cd4f21c61980ee87a01b2c9b041"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -62,6 +62,13 @@
             ],
             "index": "pypi",
             "version": "==3.12.4"
+        },
+        "djangorestframework-bulk": {
+            "hashes": [
+                "sha256:39230d8379acebd86d313df6c9150cafecb636eae1d097c30a26389ab9fee5b1"
+            ],
+            "index": "pypi",
+            "version": "==0.2.1"
         },
         "djangorestframework-datatables-editor": {
             "hashes": [

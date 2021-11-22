@@ -12,6 +12,7 @@ django-simpleui = {version = "*", index = "http://pypi.douban.com/simple/"}
 django-cors-headers = "*"
 djangorestframework-jwt = "*"
 django-filter = "*"
+djangorestframework-bulk = "*"
 
 [dev-packages]
 

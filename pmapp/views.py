@@ -7,6 +7,7 @@ from .utils.JsonResponse import JsonResponse
 from django_filters.rest_framework import DjangoFilterBackend
 from .utils.filters import ServerFilter
 from rest_framework import filters
+from rest_framework_bulk import BulkModelViewSet
 
 from .serializers import *
 
@@ -32,17 +33,17 @@ class UserView(APIView):
             "code": 200,
             "data": 'success'
         })
-#
+
 
 # 服务器视图api
-class ServerView(ModelViewSet):
+class ServerView(BulkModelViewSet):
     queryset = Server.objects.all().order_by('id')
     serializer_class = ServerSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
-    # filterset_fields = ['server_name', 'server_type', 'server_belong']
+    # filterset_fields = ['server_name', 'server_type', 'server_belong', 'id']
     filter_class = ServerFilter
     # 搜索
-    search_fields = ('title', 'description', 'content')
+    search_fields = ('id',)
     # 排序
     ordering_fields = ('id',)
 
@@ -72,6 +73,11 @@ class ServerView(ModelViewSet):
     def destroy(self, request, *args, **kwargs):
         super().destroy(request, *args, **kwargs)
         return JsonResponse(code=status.HTTP_200_OK, msg="请求成功")
+
+    def bulk_destroy(self, request, *args, **kwargs):
+        super().bulk_destroy(request, *args, **kwargs)
+        return JsonResponse(code=status.HTTP_200_OK, msg='请求成功')
+
 
 
 # 项目立项
