@@ -14,5 +14,7 @@ urlpatterns = [
 ]
 
 router = BulkRouter()
+router.register(r'roles', views.GroupView)
 router.register(r'server', views.ServerView)
+router.register(r'users', views.UsersView)
 urlpatterns += router.urls

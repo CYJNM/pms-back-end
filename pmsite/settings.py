@@ -11,15 +11,18 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import datetime
 import os
+import sys
 from pathlib import Path
 
 # import django_filters.rest_framework
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
+# sys.path.insert(0, PMSITE_DIR)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -87,7 +90,7 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'project_management_sys',
+        'NAME': 'pms',
         # 'NAME': 'test',
         'HOST': '110.42.131.210',
         'PORT': '3306',
@@ -120,8 +123,8 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.BrowsableAPIRenderer',
         'rest_framework_datatables_editor.renderers.DatatablesRenderer',
     ),
+    # 设置默认的过滤器
     'DEFAULT_FILTER_BACKENDS': (
-        # 'rest_framework_datatables_editor.filters.DatatablesFilterBackend',
         'django_filters.rest_framework.DjangoFilterBackend',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -129,10 +132,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ),
-    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework_datatables_editor.pagination.DatatablesPageNumberPagination',
-    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.CursorPagination',
-    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    # 设置默认的分页类
     'DEFAULT_PAGINATION_CLASS': 'pmapp.utils.pagination.MyPageNumberPagination',
     'PAGE_SIZE': 5,
 }
@@ -174,3 +174,7 @@ JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
     'JWT_RESPONSE_PAYLOAD_HANDLER': 'pmapp.utils.my_response.my_jwt_response_payload_handler'
 }
+# 修改Django认证的系统模型类
+AUTH_USER_MODEL = 'pmapp.User'
+
+

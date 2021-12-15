@@ -1,5 +1,32 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.contrib.auth.models import AbstractUser
+
+
+class User(AbstractUser):
+    mobile = models.CharField(max_length=11, unique=True)
+
+    class Meta:
+        verbose_name = '用户'
+        verbose_name_plural = '用户'
+
+
+class Menu(models.Model):
+    pid = models.IntegerField(null=True)
+    title = models.CharField(max_length=255, null=False)
+    icon = models.CharField(max_length=255, null=False)
+    path = models.CharField(max_length=255, null=False)
+    component = models.CharField(max_length=255, null=False)
+    name = models.CharField(max_length=255, null=False)
+    redirect = models.CharField(max_length=255, null=False)
+    always_show = models.CharField(max_length=255, null=False)
+    keep_alive = models.IntegerField(null=False)
+    created_at = models.DateField(null=False)
+    updated_at = models.DateField(null=False)
+
+    class Meta:
+        verbose_name = '菜单'
+        verbose_name_plural = '菜单管理'
 
 
 class Server(models.Model):
