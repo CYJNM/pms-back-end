@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
@@ -9,7 +9,6 @@ class User(AbstractUser):
     class Meta:
         verbose_name = '用户'
         verbose_name_plural = '用户'
-
 
 class Menu(models.Model):
     pid = models.IntegerField(null=True)
@@ -27,6 +26,10 @@ class Menu(models.Model):
     class Meta:
         verbose_name = '菜单'
         verbose_name_plural = '菜单管理'
+
+
+class Role(Group):
+    menu = models.ManyToManyField(Menu)
 
 
 class Server(models.Model):
